@@ -7,6 +7,7 @@ import java.util.List;
 
 public class AgendaChecker {
 	private List<Period> periods;
+     public AgendaChecker(){}
 	
 	public AgendaChecker(String[][] startEndPairs) throws ParseException {
 		createPeriods(startEndPairs);
