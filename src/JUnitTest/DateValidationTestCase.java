@@ -1,5 +1,9 @@
 package JUnitTest;
 
+import java.text.ParseException;
+
+import org.junit.experimental.theories.internal.ParameterizedAssertionError;
+
 import git.com.AgendaChecker;
 import junit.framework.TestCase;
 
@@ -21,19 +25,21 @@ public class DateValidationTestCase extends TestCase {
 	protected void setUp() throws Exception {
 		agendaChecker = new AgendaChecker(dateRanges);
 	}
-	
-	private void printResult() {
+
+	public void testDatesBetweenRange() {
 		try {
-			for (int i = 0; i <= dateTobeChecked.length; i++) {
-				System.out.println(dateTobeChecked[i]
-						+ " :"
-						+ "   \tIs Date within Range ? : "
-						+ agendaChecker
-								.isTheInputInGivenPeriods(dateTobeChecked[i]));
+			for (String date : dateTobeChecked) {
+				printResult(date);
 			}
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
 	}
-	
+
+	private void printResult(String date) throws ParseException {
+		boolean result = agendaChecker.isTheInputInGivenPeriods(date);
+		String out = date + " :   \tIs Date within Range ? : " + result;
+		System.out.println(out);
+	}
+
 	protected void tearDown() throws Exception {}
 }
